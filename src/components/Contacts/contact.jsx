@@ -9,7 +9,7 @@ import {
 import { deleteContactsThunk, fetchContactsThunk } from 'redux/thunks';
 import scss from './contact.module.scss';
 import { setToken } from 'api/auth';
-import { Avatar, Button } from '@mui/material';
+import { Avatar, Button, List, ListItem } from '@mui/material';
 
 const Contact = () => {
   const { token } = useSelector(state => ({
@@ -23,7 +23,7 @@ const Contact = () => {
   useEffect(() => {
     setToken(token);
     dispatch(fetchContactsThunk());
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const onDeleteContact = contactsId => {
     dispatch(deleteContactsThunk(contactsId));
@@ -33,30 +33,33 @@ const Contact = () => {
     <>
       {loading && <div>Loading...</div>}
       {error && <div>{error}</div>}
-      <ul className={scss.contactList}>
+      <List className={scss.contactList}>
         {contacts.map(({ id, name, number }, index) => {
           return (
-            <li key={`${number}-${name}`} className={scss.contactItem}>
+            <ListItem key={`${number}-${name}`} className={scss.contactItem}>
               <div className={scss.contactWrapper}>
                 <Avatar
+                  className={scss.contactAvatar}
                   alt={name}
                   src={`/static/images/avatar/${index + 1}.jpg`}
                 />
-                <span>{name}:</span>
-                <span className={scss.number}>{number}</span>
-                <Button
-                  variant="outlined"
-                  type="button"
-                  className={scss.button}
-                  onClick={() => onDeleteContact(id)}
-                >
-                  Delete
-                </Button>
+                <div className={scss.contactData}>
+                  <span className={scss.contactName}>{name}:</span>
+                  <span className={scss.number}>{number}</span>
+                </div>
               </div>
-            </li>
+              <Button
+                variant="outlined"
+                type="button"
+                className={scss.button}
+                onClick={() => onDeleteContact(id)}
+              >
+                Delete
+              </Button>
+            </ListItem>
           );
         })}
-      </ul>
+      </List>
     </>
   );
 };

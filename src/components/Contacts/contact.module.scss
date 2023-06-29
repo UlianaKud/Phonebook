@@ -3,14 +3,26 @@
   flex-direction: column;
   gap: 15px;
 }
+.contactItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
 .contactWrapper{
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-.number{
-    margin-right: 15px;
+.contactData{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.button{
-    padding: 5px 20px;
+.button {
+  padding: 5px 20px;
+}
+.contactAvatar {
+  background-color: #1976d2;
 }
