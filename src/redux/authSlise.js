@@ -32,6 +32,7 @@ const handlePending = state => {
 const handleRejected = (state, { error }) => {
   state.isLoading = false;
   state.error = error.message;
+  state.token = '';
 };
 
 const authSlice = createSlice({

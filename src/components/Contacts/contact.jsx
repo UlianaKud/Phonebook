@@ -21,6 +21,7 @@ const Contact = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(token);
     setToken(token);
     dispatch(fetchContactsThunk());
   }, [dispatch, token]);
@@ -34,15 +35,13 @@ const Contact = () => {
       {loading && <div>Loading...</div>}
       {error && <div>{error}</div>}
       <List className={scss.contactList}>
-        {contacts.map(({ id, name, number }, index) => {
+        {contacts.map(({ id, name, number }) => {
           return (
-            <ListItem key={`${number}-${name}`} className={scss.contactItem}>
+            <ListItem key={`${number}-${name}`}>
               <div className={scss.contactWrapper}>
-                <Avatar
-                  className={scss.contactAvatar}
-                  alt={name}
-                  src={`/static/images/avatar/${index + 1}.jpg`}
-                />
+                <Avatar className={scss.contactAvatar} alt={name}>
+                  {name?.[0]?.toUpperCase()}
+                </Avatar>
                 <div className={scss.contactData}>
                   <span className={scss.contactName}>{name}:</span>
                   <span className={scss.number}>{number}</span>

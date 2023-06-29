@@ -2,27 +2,27 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
-.contactItem {
-  width: 100%;
+.contactAvatar {
+  background-color: #1976d2!important;
+}
+.contactWrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 20px;
 }
-.contactWrapper{
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.contactData{
+.contactData {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 .button {
   padding: 5px 20px;
-}
-.contactAvatar {
-  background-color: #1976d2;
 }

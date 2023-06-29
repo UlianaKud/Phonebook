@@ -1,6 +1,4 @@
-// body{
-//   background-color: rgb(240, 237, 234)
-// }
+
 .wrapper {
   padding: 50px;
   min-width: 700px;
@@ -8,10 +6,9 @@
   flex-direction: column;
   justify-content: center;
   gap: 50px;
-  // background-color: rgb(240, 237, 234) !important;
 }
 .header {
-  margin-bottom: 20px;
+  margin-bottom: 20px!important;
 }
 .form {
   display: flex;
