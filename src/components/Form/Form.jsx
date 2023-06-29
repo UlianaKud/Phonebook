@@ -60,7 +60,6 @@ const Form = () => {
       </div>
       <div className={scss.inputWrapper}>
         <InputMask
-          // className={scss.input}
           mask="+3\8(999)9999999"
           maskChar=" "
           ref={inputRef}

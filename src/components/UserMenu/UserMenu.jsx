@@ -40,10 +40,6 @@ const UserMenu = () => {
         </Toolbar>
       </AppBar>
     </Box>
-    // <div>
-    //   <p>{email}</p>
-    //   <button onClick={handleLogOut}>Logout</button>
-    // </div>
   );
 };
 

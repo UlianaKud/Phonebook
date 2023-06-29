@@ -5,7 +5,6 @@ import {
   addContactsThunk,
   deleteContactsThunk,
 } from './thunks';
-import { getUserProfile } from 'api/auth';
 
 const handlePending = state => {
   state.isLoading = true;

@@ -7,7 +7,6 @@ const PrivateRoute = ({ children }) => {
         isAuth: state.auth.token
     }
   });
-  console.log(isAuth);
   return isAuth ? children : <Navigate to="/login" />;
 };
 

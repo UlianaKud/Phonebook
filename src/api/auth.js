@@ -23,7 +23,6 @@ export const logIn = async body => {
 
 export const getUserProfile = async () => {
     const { data } = await instance.get('/users/current');
-    console.log(data);
     return data;
   };
 

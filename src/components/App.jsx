@@ -4,9 +4,6 @@ import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 import Layout from './Layout/Layout';
-// import Home from './Home/Home';
-// import Register from './Register/Register';
-// import Login from './Login/Login';
 
 const Home = lazy(() => import('./Home/Home'));
 const Register = lazy(() => import('./Register/Register'));
@@ -19,7 +16,6 @@ export const App = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // fontSize: 40,
         color: '#010101',
         padding: '30px',
       }}
