@@ -58,6 +58,7 @@ const Login = () => {
             id="inputEmail"
             onChange={handleChange}
             value={email}
+            autoComplete
           />
         </FormControl>
         <FormControl fullWidth>
@@ -71,6 +72,7 @@ const Login = () => {
             id="inputPassword"
             onChange={handleChange}
             value={password}
+            autoComplete
           />
         </FormControl>
         <div className={scss.buttons}>
