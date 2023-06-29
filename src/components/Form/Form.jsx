@@ -3,9 +3,9 @@ import { addContactsThunk } from 'redux/thunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../redux/selectors';
 import Notiflix from 'notiflix';
-import { nanoid } from '@reduxjs/toolkit';
 import scss from './form.module.scss';
 import InputMask from 'react-input-mask';
+import { TextField, Button } from '@mui/material';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -33,9 +33,8 @@ const Form = () => {
 
     dispatch(
       addContactsThunk({
-        id: nanoid(),
         name: form.elements.name.value,
-        phone: form.elements.number.value,
+        number: form.elements.number.value,
       })
     );
     inputRef.current.setInputValue('');
@@ -44,42 +43,50 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit} className={scss.form}>
-      <label htmlFor="name" className={scss.label}>
-        <span>Name</span>
-        <div className={scss.inputWrapper}>
-          <input
-            className={scss.input}
-            type="text"
-            name="name"
-            placeholder="Name"
-            pattern="[A-Za-z]{1,32}"
-            title="Username must be one word"
-            required
-          />
-          <span></span>
-        </div>
-      </label>
-      <label htmlFor="number" className={scss.label}>
-        <span>Number</span>
-        <div className={scss.inputWrapper}>
-          <InputMask
-            className={scss.input}
-            type="tel"
-            name="number"
-            placeholder="Number"
-            pattern="[\+]\d{2}[\(]\d{3}[\)]\d{7}"
-            ref={inputRef}
-            title="Phone number must have format +38(050)1234567 and can start with +"
-            required
-            mask="+3\8(999)9999999"
-            maskChar=" "
-          />
-          <span></span>
-        </div>
-      </label>
-      <button type="submit" className={scss.button}>
-        Add contact
-      </button>
+      <div className={scss.inputWrapper}>
+        <TextField
+          id="outlined-basic"
+          label="Name"
+          variant="outlined"
+          required
+          inputProps={{
+            className: scss.input,
+            name: 'name',
+            pattern: '[A-Za-z]{1,32}',
+            title: 'Username must be one word',
+          }}
+        />
+        <span></span>
+      </div>
+      <div className={scss.inputWrapper}>
+        <InputMask
+          // className={scss.input}
+          mask="+3\8(999)9999999"
+          maskChar=" "
+          ref={inputRef}
+        >
+          {() => (
+            <TextField
+              id="outlined-basic"
+              label="Number"
+              variant="outlined"
+              required
+              inputProps={{
+                className: scss.input,
+                name: 'number',
+                type: 'tel',
+                pattern: '[+]d{2}[(]d{3}[)]d{7}',
+                title:
+                  'Phone number must have format +38(050)1234567 and can start with +',
+              }}
+            />
+          )}
+        </InputMask>
+        <span></span>
+      </div>
+      <Button variant="outlined" type="submit" className={scss.button}>
+        Add Contact
+      </Button>
     </form>
   );
 };

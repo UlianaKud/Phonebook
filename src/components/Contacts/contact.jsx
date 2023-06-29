@@ -8,32 +8,25 @@ import {
 } from '../../redux/selectors';
 import { deleteContactsThunk, fetchContactsThunk } from 'redux/thunks';
 import scss from './contact.module.scss';
+import { setToken } from 'api/auth';
+import { Avatar, Button } from '@mui/material';
 
 const Contact = () => {
-  // const contacts = useSelector(selectContacts);
-  // const filter = useSelector(selectFilter);
+  const { token } = useSelector(state => ({
+    token: state.auth.token,
+  }));
   const contacts = useSelector(visibleContacts);
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setToken(token);
     dispatch(fetchContactsThunk());
   }, [dispatch]);
 
-  // const visibleContacts = () => {
-  //   const normalizedFilter = filter?.toLowerCase();
-
-  //   if (normalizedFilter !== '' && contacts?.length) {
-  //     return contacts.filter(contact =>
-  //       contact.name.toLowerCase().includes(normalizedFilter)
-  //     );
-  //   } else {
-  //     return contacts;
-  //   }
-  // };
-  const onDeleteContact = id => {
-    dispatch(deleteContactsThunk(id));
+  const onDeleteContact = contactsId => {
+    dispatch(deleteContactsThunk(contactsId));
   };
 
   return (
@@ -41,19 +34,24 @@ const Contact = () => {
       {loading && <div>Loading...</div>}
       {error && <div>{error}</div>}
       <ul className={scss.contactList}>
-        {contacts.map(({ id, name, phone }) => {
+        {contacts.map(({ id, name, number }, index) => {
           return (
-            <li key={`${phone}-${name}`} className={scss.contactItem}>
+            <li key={`${number}-${name}`} className={scss.contactItem}>
               <div className={scss.contactWrapper}>
+                <Avatar
+                  alt={name}
+                  src={`/static/images/avatar/${index + 1}.jpg`}
+                />
                 <span>{name}:</span>
-                <span className={scss.number}>{phone}</span>
-                <button
+                <span className={scss.number}>{number}</span>
+                <Button
+                  variant="outlined"
                   type="button"
                   className={scss.button}
                   onClick={() => onDeleteContact(id)}
                 >
                   Delete
-                </button>
+                </Button>
               </div>
             </li>
           );

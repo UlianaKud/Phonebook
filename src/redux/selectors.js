@@ -15,15 +15,3 @@ export const visibleContacts = createSelector(
     );
   }
 );
-
-// const visibleContacts = () => {
-//     const normalizedFilter = filter?.toLowerCase();
-
-//     if (normalizedFilter !== '' && contacts?.length) {
-//       return contacts.filter(contact =>
-//         contact.name.toLowerCase().includes(normalizedFilter)
-//       );
-//     } else {
-//       return contacts;
-//     }
-//   };

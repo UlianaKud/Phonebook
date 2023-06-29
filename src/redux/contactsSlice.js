@@ -5,6 +5,7 @@ import {
   addContactsThunk,
   deleteContactsThunk,
 } from './thunks';
+import { getUserProfile } from 'api/auth';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -28,7 +29,7 @@ const handleAddContacts = (state, { payload }) => {
 
 const handleDeleteContacts = (state, { payload }) => {
   state.isLoading = false;
-  state.items = state.items?.filter(item => item.id !== payload.id);
+  state.items = state.items?.filter(item => item.contactsId !== payload.contactsId);
 };
 
 const contactSlice = createSlice({

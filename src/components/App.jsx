@@ -1,27 +1,58 @@
-import Form from './Form/Form.jsx';
-import Contact from './Contacts/contact.jsx';
-import Filter from './Filter/filter.jsx';
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
+import { Toaster } from 'react-hot-toast';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+import Layout from './Layout/Layout';
+// import Home from './Home/Home';
+// import Register from './Register/Register';
+// import Login from './Login/Login';
+
+const Home = lazy(() => import('./Home/Home'));
+const Register = lazy(() => import('./Register/Register'));
+const Login = lazy(() => import('./Login/Login'));
 
 export const App = () => {
   return (
     <div
       style={{
-        // height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: 40,
+        // fontSize: 40,
         color: '#010101',
         padding: '30px',
       }}
     >
-      <div>
-        <h1>Phonebook</h1>
-        <Form />
-        <h2>Contacts</h2>
-        <Filter />
-        <Contact />
-      </div>
+      <Toaster />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+      </Routes>
     </div>
   );
 };

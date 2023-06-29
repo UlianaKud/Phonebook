@@ -1,0 +1,17 @@
+.wrapper {
+    padding: 50px;
+    min-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+  }
+  .header {
+    margin-bottom: 20px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
