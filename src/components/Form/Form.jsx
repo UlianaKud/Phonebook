@@ -83,7 +83,7 @@ const Form = () => {
         </InputMask>
         <span></span>
       </div>
-      <Button variant="outlined" type="submit" className={scss.button}>
+      <Button variant="outlined" type="submit">
         Add Contact
       </Button>
     </form>

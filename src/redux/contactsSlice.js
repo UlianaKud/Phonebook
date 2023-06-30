@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { initialState } from './initialState';
 import {
   fetchContactsThunk,
@@ -28,7 +28,7 @@ const handleAddContacts = (state, { payload }) => {
 
 const handleDeleteContacts = (state, { payload }) => {
   state.isLoading = false;
-  state.items = state.items?.filter(item => item.contactsId !== payload.contactsId);
+  state.items = state.items?.filter(item => item.id !== payload.id);
 };
 
 const contactSlice = createSlice({
