@@ -21,7 +21,6 @@ const Contact = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(token);
     setToken(token);
     dispatch(fetchContactsThunk());
   }, [dispatch, token]);
